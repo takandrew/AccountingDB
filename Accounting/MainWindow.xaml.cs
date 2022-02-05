@@ -23,6 +23,11 @@ namespace Accounting
         {
             InitializeComponent();
 
+            UpdateComboboxes();
+        }
+
+        public void UpdateComboboxes()
+        {
             ComboBox_Type.ItemsSource = Queries.Query_Type();
             ComboBox_Status.ItemsSource = Queries.Query_Status();
             ComboBox_Type.SelectedItem = "All";

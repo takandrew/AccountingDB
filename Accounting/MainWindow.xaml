@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Accounting"
         mc:Ignorable="d"
         Title="Accounting" Height="450" Width="800"
-        Loaded="MainWindow_Loaded">
-    <Grid>
+        Loaded="MainWindow_Loaded" Icon="/16_122653.ico">
+    <Grid Background="#FFECECEC">
         <DataGrid Name="AccTable" Margin="10,66,10,66" IsReadOnly="True" ColumnWidth="*">
         </DataGrid>
         <ComboBox Name="ComboBox_Type" HorizontalAlignment="Left" Margin="21,33,0,0" VerticalAlignment="Top" Width="176"/>
