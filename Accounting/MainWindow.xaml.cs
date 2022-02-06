@@ -40,7 +40,6 @@ namespace Accounting
         private void AccTable_Update(bool allType, bool allStatus)
         {
             AccountingDBContext dbContext = new AccountingDBContext();
-            UpdateComboboxes();
             if (allType && allStatus)
             {
                 var query =
@@ -76,6 +75,7 @@ namespace Accounting
             AccTable.Columns[2].Width = DataGridLength.Auto;
             AccTable.Columns[3].Width = DataGridLength.Auto;
             AccTable.Columns[4].Width = DataGridLength.Auto;
+            UpdateComboboxes();
         }
 
         private void Button_Filter_Click(object sender, RoutedEventArgs e)

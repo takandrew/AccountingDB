@@ -5,10 +5,17 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>16_122653.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="16_122653.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="16_122653.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
