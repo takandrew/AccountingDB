@@ -22,8 +22,6 @@ namespace Accounting
         public MainWindow()
         {
             InitializeComponent();
-
-            UpdateComboboxes();
         }
 
         public void UpdateComboboxes()
@@ -42,6 +40,7 @@ namespace Accounting
         private void AccTable_Update(bool allType, bool allStatus)
         {
             AccountingDBContext dbContext = new AccountingDBContext();
+            UpdateComboboxes();
             if (allType && allStatus)
             {
                 var query =
