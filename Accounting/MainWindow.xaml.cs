@@ -46,7 +46,7 @@ namespace Accounting
             {
                 var query =
             from AccEntity in dbContext.AccountingEntities
-            select new { AccEntity.Name, AccEntity.Type, AccEntity.Status, AccEntity.Progress };
+            select new { AccEntity.Id, AccEntity.Name, AccEntity.Type, AccEntity.Status, AccEntity.Progress };
                 AccTable.ItemsSource = query.ToList();
             }
             else if (allType && !allStatus)
@@ -54,7 +54,7 @@ namespace Accounting
                 var query =
             from AccEntity in dbContext.AccountingEntities
             where AccEntity.Status == ComboBox_Status.SelectedItem.ToString() 
-            select new { AccEntity.Name, AccEntity.Type, AccEntity.Status, AccEntity.Progress };
+            select new { AccEntity.Id, AccEntity.Name, AccEntity.Type, AccEntity.Status, AccEntity.Progress };
                 AccTable.ItemsSource = query.ToList();
             }
             else if (!allType && allStatus)
@@ -62,7 +62,7 @@ namespace Accounting
                 var query =
             from AccEntity in dbContext.AccountingEntities
             where AccEntity.Type == ComboBox_Type.SelectedItem.ToString()
-            select new { AccEntity.Name, AccEntity.Type, AccEntity.Status, AccEntity.Progress };
+            select new { AccEntity.Id, AccEntity.Name, AccEntity.Type, AccEntity.Status, AccEntity.Progress };
                 AccTable.ItemsSource = query.ToList();
             }
             else if (!allType && !allStatus)
@@ -70,7 +70,7 @@ namespace Accounting
                 var query =
             from AccEntity in dbContext.AccountingEntities
             where AccEntity.Type == ComboBox_Type.SelectedItem.ToString() && AccEntity.Status == ComboBox_Status.SelectedItem.ToString()
-            select new { AccEntity.Name, AccEntity.Type, AccEntity.Status, AccEntity.Progress };
+            select new { AccEntity.Id, AccEntity.Name, AccEntity.Type, AccEntity.Status, AccEntity.Progress };
                 AccTable.ItemsSource = query.ToList();
             }
         }
@@ -87,17 +87,67 @@ namespace Accounting
 
         private void Button_Insert_Click(object sender, RoutedEventArgs e)
         {
-
+            Inserting inserting = new Inserting();
+            inserting.ShowDialog();
+            AccTable_Update(true, true);
         }
 
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                string selected = AccTable.SelectedItem.ToString();
+                var tempInd1 = selected.IndexOf("=");
+                var tempInd2 = selected.IndexOf(",");
+                string tempStr = "";
+                for (int i = tempInd1 + 2; i < tempInd2; i++)
+                {
+                    tempStr += selected[i];
+                }
+                long selectedId = int.Parse(tempStr);
 
+                AccountingEntity accountingEntity = new AccountingEntity();
+                AccountingDBContext dBContext = new AccountingDBContext();
+                accountingEntity = dBContext.AccountingEntities.Where(x => x.Id == selectedId).FirstOrDefault();
+
+                Updating updating = new Updating(accountingEntity);
+                updating.ShowDialog();
+                AccTable_Update(true, true);
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("You should select record before updating it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Button_Delete_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                string selected = AccTable.SelectedItem.ToString();
+                var tempInd1 = selected.IndexOf("=");
+                var tempInd2 = selected.IndexOf(",");
+                string tempStr = "";
+                for (int i = tempInd1 + 2; i < tempInd2; i++)
+                {
+                    tempStr += selected[i];
+                }
+                long selectedId = int.Parse(tempStr);
 
+                if (MessageBox.Show($"Are you sure, that you want to delete record with ID = {selectedId}?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    AccountingEntity accountingEntity = new AccountingEntity();
+                    AccountingDBContext dBContext = new AccountingDBContext();
+                    accountingEntity = dBContext.AccountingEntities.Where(x => x.Id == selectedId).FirstOrDefault();
+                    dBContext.AccountingEntities.Remove(accountingEntity);
+                    dBContext.SaveChanges();
+                    AccTable_Update(true, true);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("You should select record before deleting it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

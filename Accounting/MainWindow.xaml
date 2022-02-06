@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Accounting"
         mc:Ignorable="d"
-        Title="Accounting" Height="450" Width="800"
+        Title="Accounting" Height="450" Width="800" ResizeMode="NoResize"
         Loaded="MainWindow_Loaded" Icon="/16_122653.ico">
     <Grid Background="#FFECECEC">
-        <DataGrid Name="AccTable" Margin="10,66,10,66" IsReadOnly="True" ColumnWidth="*">
+        <DataGrid Name="AccTable" Margin="10,66,10,66" IsReadOnly="True"  ColumnWidth="Auto">
         </DataGrid>
         <ComboBox Name="ComboBox_Type" HorizontalAlignment="Left" Margin="21,33,0,0" VerticalAlignment="Top" Width="176"/>
         <Button Content="Filter" Name="Button_Filter" HorizontalAlignment="Left" Margin="633,23,0,0" VerticalAlignment="Top" Height="32" Width="135" Click="Button_Filter_Click"/>
