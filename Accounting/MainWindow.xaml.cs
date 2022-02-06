@@ -73,6 +73,10 @@ namespace Accounting
             select new { AccEntity.Id, AccEntity.Name, AccEntity.Type, AccEntity.Status, AccEntity.Progress };
                 AccTable.ItemsSource = query.ToList();
             }
+            AccTable.Columns[0].Width = DataGridLength.Auto;
+            AccTable.Columns[2].Width = DataGridLength.Auto;
+            AccTable.Columns[3].Width = DataGridLength.Auto;
+            AccTable.Columns[4].Width = DataGridLength.Auto;
         }
 
         private void Button_Filter_Click(object sender, RoutedEventArgs e)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Accounting"
         mc:Ignorable="d"
-        Height="359" Width="309" ResizeMode="NoResize">
+        Title="Updating" Height="359" Width="309" ResizeMode="NoResize" Icon="/16_122653.ico">
     <Grid Background="#FFECECEC">
         <TextBox Name="TextBox_Name" HorizontalAlignment="Center" Margin="0,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Height="28"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="34,19,0,0" VerticalAlignment="Top"/>
