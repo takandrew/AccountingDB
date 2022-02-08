@@ -41,6 +41,9 @@ namespace Accounting
                     .Where(x => x.Id == updatingEntity.Id)
                     .FirstOrDefault();
 
+                string newLogRecord = $"{DateTime.Now} [UPDATE] [WAS] Record: ID = {accEntity.Id}, Name = {accEntity.Name}, Status = {accEntity.Status}, Progress = {accEntity.Progress}";
+                FileWork.SaveLog(newLogRecord);
+
                 accEntity.Name = TextBox_Name.Text;
                 accEntity.Type = TextBox_Type.Text;
                 accEntity.Status = TextBox_Status.Text;
@@ -48,6 +51,8 @@ namespace Accounting
 
                 context.SaveChanges();
                 MessageBox.Show("A record has been successfully changed.", "Updating", MessageBoxButton.OK, MessageBoxImage.Information);
+                newLogRecord = $"{DateTime.Now} [UPDATE] [BECAME] Record: ID = {accEntity.Id}, Name = {accEntity.Name}, Status = {accEntity.Status}, Progress = {accEntity.Progress}";
+                FileWork.SaveLog(newLogRecord);
                 Close();
             }
         }

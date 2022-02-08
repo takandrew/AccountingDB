@@ -35,6 +35,8 @@ namespace Accounting
             context.Add(accountingEntity);
             context.SaveChanges();
             MessageBox.Show("A new record has been successfully added.", "Inserting", MessageBoxButton.OK, MessageBoxImage.Information);
+            string newLogRecord = $"{DateTime.Now} [INSERT] Record: ID = {accountingEntity.Id}, Name = {accountingEntity.Name}, Status = {accountingEntity.Status}, Progress = {accountingEntity.Progress}";
+            FileWork.SaveLog(newLogRecord);
             Close();
         }
     }

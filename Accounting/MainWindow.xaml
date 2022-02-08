@@ -5,18 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Accounting"
         mc:Ignorable="d"
-        Title="Accounting" Height="450" Width="800" ResizeMode="NoResize"
+        Title="Accounting" Height="462" Width="800" ResizeMode="NoResize"
         Loaded="MainWindow_Loaded" Icon="/16_122653.ico">
     <Grid Background="#FFECECEC">
-        <DataGrid Name="AccTable" Margin="10,66,10,66" IsReadOnly="True"  ColumnWidth="*">
+        <DataGrid Name="AccTable" Margin="10,82,10,70" IsReadOnly="True"  ColumnWidth="*">
         </DataGrid>
-        <ComboBox Name="ComboBox_Type" HorizontalAlignment="Left" Margin="21,33,0,0" VerticalAlignment="Top" Width="176"/>
-        <Button Content="Filter" Name="Button_Filter" HorizontalAlignment="Left" Margin="633,23,0,0" VerticalAlignment="Top" Height="32" Width="135" Click="Button_Filter_Click"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top" Width="176"/>
-        <ComboBox Name="ComboBox_Status"  HorizontalAlignment="Left" Margin="269,33,0,0" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Status" HorizontalAlignment="Left" Margin="269,10,0,0" VerticalAlignment="Top"/>
-        <Button Content="Insert" Name="Button_Insert" HorizontalAlignment="Left" Margin="92,360,0,0" VerticalAlignment="Top" Height="32" Width="135" Click="Button_Insert_Click"/>
-        <Button Content="Update" Name="Button_Update" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Height="32" Width="135" Click="Button_Update_Click"/>
-        <Button Content="Delete" Name="Button_Delete" HorizontalAlignment="Left" Margin="566,360,0,0" VerticalAlignment="Top" Height="32" Width="134" Click="Button_Delete_Click"/>
+        <ComboBox Name="ComboBox_Type" HorizontalAlignment="Left" Margin="21,49,0,0" VerticalAlignment="Top" Width="176"/>
+        <Button Content="Filter" Name="Button_Filter" HorizontalAlignment="Left" Margin="633,39,0,0" VerticalAlignment="Top" Height="32" Width="135" Click="Button_Filter_Click"/>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="21,26,0,0" VerticalAlignment="Top" Width="176"/>
+        <ComboBox Name="ComboBox_Status"  HorizontalAlignment="Left" Margin="269,49,0,0" VerticalAlignment="Top" Width="176"/>
+        <Label Content="Status" HorizontalAlignment="Left" Margin="269,26,0,0" VerticalAlignment="Top"/>
+        <Button Content="Insert" Name="Button_Insert" HorizontalAlignment="Left" Margin="92,376,0,0" VerticalAlignment="Top" Height="32" Width="135" Click="Button_Insert_Click"/>
+        <Button Content="Update" Name="Button_Update" HorizontalAlignment="Center" Margin="0,376,0,0" VerticalAlignment="Top" Height="32" Width="136" Click="Button_Update_Click"/>
+        <Button Content="Delete" Name="Button_Delete" HorizontalAlignment="Left" Margin="566,376,0,0" VerticalAlignment="Top" Height="32" Width="134" Click="Button_Delete_Click"/>
+        <Menu Height="20" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Backup the base" Click="Button_BackupBase_Click" ></MenuItem>
+                <MenuItem Header="Backup the log" Click="Button_BackupLog_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>

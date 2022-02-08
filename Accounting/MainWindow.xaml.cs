@@ -28,13 +28,13 @@ namespace Accounting
         {
             ComboBox_Type.ItemsSource = Queries.Query_Type();
             ComboBox_Status.ItemsSource = Queries.Query_Status();
-            ComboBox_Type.SelectedItem = "All";
-            ComboBox_Status.SelectedItem = "All";
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             AccTable_Update(true, true);
+            ComboBox_Type.SelectedItem = "All";
+            ComboBox_Status.SelectedItem = "All";
         }
 
         private void AccTable_Update(bool allType, bool allStatus)
@@ -142,6 +142,8 @@ namespace Accounting
                     AccountingEntity accountingEntity = new AccountingEntity();
                     AccountingDBContext dBContext = new AccountingDBContext();
                     accountingEntity = dBContext.AccountingEntities.Where(x => x.Id == selectedId).FirstOrDefault();
+                    string newLogRecord = $"{DateTime.Now} [DELETE] Record: ID = {accountingEntity.Id}, Name = {accountingEntity.Name}, Status = {accountingEntity.Status}, Progress = {accountingEntity.Progress}";
+                    FileWork.SaveLog(newLogRecord);
                     dBContext.AccountingEntities.Remove(accountingEntity);
                     dBContext.SaveChanges();
                     AccTable_Update(true, true);
@@ -151,6 +153,18 @@ namespace Accounting
             {
                 MessageBox.Show("You should select record before deleting it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Button_BackupBase_Click(object sender, RoutedEventArgs e)
+        {
+            string newPath = @"G:\Мой диск\База\AccountingDB.db";
+            FileWork.BackupTheBase(newPath);
+        }
+
+        private void Button_BackupLog_Click(object sender, RoutedEventArgs e)
+        {
+            string newPath = @"G:\Мой диск\База\BaseLog.txt";
+            FileWork.BackupTheLog(newPath);
         }
     }
 }
