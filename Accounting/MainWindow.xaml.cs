@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Accounting
 {
@@ -51,7 +40,7 @@ namespace Accounting
             {
                 var query =
             from AccEntity in dbContext.AccountingEntities
-            where AccEntity.Status == ComboBox_Status.SelectedItem.ToString() 
+            where AccEntity.Status == ComboBox_Status.SelectedItem.ToString()
             select new { AccEntity.Id, AccEntity.Name, AccEntity.Type, AccEntity.Status, AccEntity.Progress };
                 AccTable.ItemsSource = query.ToList();
             }
@@ -97,74 +86,29 @@ namespace Accounting
 
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                string selected = AccTable.SelectedItem.ToString();
-                var tempInd1 = selected.IndexOf("=");
-                var tempInd2 = selected.IndexOf(",");
-                string tempStr = "";
-                for (int i = tempInd1 + 2; i < tempInd2; i++)
-                {
-                    tempStr += selected[i];
-                }
-                long selectedId = int.Parse(tempStr);
-
-                AccountingEntity accountingEntity = new AccountingEntity();
-                AccountingDBContext dBContext = new AccountingDBContext();
-                accountingEntity = dBContext.AccountingEntities.Where(x => x.Id == selectedId).FirstOrDefault();
-
-                Updating updating = new Updating(accountingEntity);
-                updating.ShowDialog();
-                AccTable_Update(true, true);
-            }
-            catch (NullReferenceException)
-            {
-                MessageBox.Show("You should select record before updating it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            UpdateDelete.Updating(AccTable.SelectedItem.ToString());
+            AccTable_Update(true, true);
         }
 
         private void Button_Delete_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                string selected = AccTable.SelectedItem.ToString();
-                var tempInd1 = selected.IndexOf("=");
-                var tempInd2 = selected.IndexOf(",");
-                string tempStr = "";
-                for (int i = tempInd1 + 2; i < tempInd2; i++)
-                {
-                    tempStr += selected[i];
-                }
-                long selectedId = int.Parse(tempStr);
-
-                if (MessageBox.Show($"Are you sure, that you want to delete record with ID = {selectedId}?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                {
-                    AccountingEntity accountingEntity = new AccountingEntity();
-                    AccountingDBContext dBContext = new AccountingDBContext();
-                    accountingEntity = dBContext.AccountingEntities.Where(x => x.Id == selectedId).FirstOrDefault();
-                    string newLogRecord = $"{DateTime.Now} [DELETE] Record: ID = {accountingEntity.Id}, Name = {accountingEntity.Name}, Status = {accountingEntity.Status}, Progress = {accountingEntity.Progress}";
-                    FileWork.SaveLog(newLogRecord);
-                    dBContext.AccountingEntities.Remove(accountingEntity);
-                    dBContext.SaveChanges();
-                    AccTable_Update(true, true);
-                }
-            }
-            catch (NullReferenceException)
-            {
-                MessageBox.Show("You should select record before deleting it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            UpdateDelete.Deleting(AccTable.SelectedItem.ToString());
+            AccTable_Update(true, true);
         }
 
         private void Button_BackupBase_Click(object sender, RoutedEventArgs e)
         {
-            string newPath = @"G:\Мой диск\База\AccountingDB.db";
-            FileWork.BackupTheBase(newPath);
+            FileWork.BackupTheBase();
         }
 
         private void Button_BackupLog_Click(object sender, RoutedEventArgs e)
         {
-            string newPath = @"G:\Мой диск\База\BaseLog.txt";
-            FileWork.BackupTheLog(newPath);
+            FileWork.BackupTheLog();
+        }
+
+        private void Button_ChangeBackupDirection_Click(object sender, RoutedEventArgs e)
+        {
+            FileWork.ChangeBackupDirectory();
         }
     }
 }

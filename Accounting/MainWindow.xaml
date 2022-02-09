@@ -22,6 +22,7 @@
             <MenuItem Header="File">
                 <MenuItem Header="Backup the base" Click="Button_BackupBase_Click" ></MenuItem>
                 <MenuItem Header="Backup the log" Click="Button_BackupLog_Click"></MenuItem>
+                <MenuItem Header="Change backup direction" Click="Button_ChangeBackupDirection_Click"></MenuItem>
             </MenuItem>
         </Menu>
     </Grid>

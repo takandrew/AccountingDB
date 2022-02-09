@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Accounting
 {
+    /// <summary>
+    /// Class for queries
+    /// </summary>
     public class Queries
     {
-        //AccountingDBContext dbContext = new AccountingDBContext();
-
+        /// <summary>
+        /// Returns the list of types in the base
+        /// </summary>
         public static List<string> Query_Type()
         {
             AccountingDBContext dbContext = new AccountingDBContext();
@@ -23,6 +24,9 @@ namespace Accounting
             return typeList;
         }
 
+        /// <summary>
+        /// Returns the list of statuses in the base
+        /// </summary>
         public static List<string> Query_Status()
         {
             AccountingDBContext dbContext = new AccountingDBContext();
