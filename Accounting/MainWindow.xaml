@@ -20,9 +20,14 @@
         <Button Content="Delete" Name="Button_Delete" HorizontalAlignment="Left" Margin="566,376,0,0" VerticalAlignment="Top" Height="32" Width="134" Click="Button_Delete_Click"/>
         <Menu Height="20" VerticalAlignment="Top">
             <MenuItem Header="File">
+                <MenuItem Header="Open the log" Click="Button_OpenTheLog_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Backup">
+                <MenuItem Header="Change backup directory" Click="Button_ChangeBackupDirectory_Click"></MenuItem>
                 <MenuItem Header="Backup the base" Click="Button_BackupBase_Click" ></MenuItem>
                 <MenuItem Header="Backup the log" Click="Button_BackupLog_Click"></MenuItem>
-                <MenuItem Header="Change backup direction" Click="Button_ChangeBackupDirection_Click"></MenuItem>
+                <MenuItem Header="Apply the base backup" Click="Button_ApplyTheBaseBackup_Click"></MenuItem>
+                <MenuItem Header="Apply the log backup" Click="Button_ApplyTheLogBackup_Click"></MenuItem>
             </MenuItem>
         </Menu>
     </Grid>

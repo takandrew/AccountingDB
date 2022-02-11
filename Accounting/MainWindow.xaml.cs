@@ -106,9 +106,25 @@ namespace Accounting
             FileWork.BackupTheLog();
         }
 
-        private void Button_ChangeBackupDirection_Click(object sender, RoutedEventArgs e)
+        private void Button_ChangeBackupDirectory_Click(object sender, RoutedEventArgs e)
         {
             FileWork.ChangeBackupDirectory();
+        }
+
+        private void Button_OpenTheLog_Click(object sender, RoutedEventArgs e)
+        {
+            FileWork.OpenLog();
+        }
+
+        private void Button_ApplyTheBaseBackup_Click(object sender, RoutedEventArgs e)
+        {
+            FileWork.ApplyTheBaseBackup();
+            AccTable_Update(true, true);
+        }
+
+        private void Button_ApplyTheLogBackup_Click(object sender, RoutedEventArgs e)
+        {
+            FileWork.ApplyTheLogBackup();
         }
     }
 }
