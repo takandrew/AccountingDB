@@ -9,30 +9,22 @@ namespace Accounting
     /// </summary>
     public static class UpdateDelete
     {
-        private static long TakeIDFromAccTable(string errorMSG, string selectedRecord)
+        private static long TakeIDFromAccTable(string selectedRecord)
         {
-            try
+            string selected = selectedRecord;
+            var tempInd1 = selected.IndexOf("=");
+            var tempInd2 = selected.IndexOf(",");
+            string tempStr = "";
+            for (int i = tempInd1 + 2; i < tempInd2; i++)
             {
-                string selected = selectedRecord;
-                var tempInd1 = selected.IndexOf("=");
-                var tempInd2 = selected.IndexOf(",");
-                string tempStr = "";
-                for (int i = tempInd1 + 2; i < tempInd2; i++)
-                {
-                    tempStr += selected[i];
-                }
-                return int.Parse(tempStr);
+                tempStr += selected[i];
             }
-            catch (NullReferenceException)
-            {
-                MessageBox.Show(errorMSG, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            return -1;
+            return int.Parse(tempStr);
         }
 
         public static void Updating(string selectedRecord)
         {
-            long selectedId = TakeIDFromAccTable("You should select record before updating it.", selectedRecord);
+            long selectedId = TakeIDFromAccTable(selectedRecord);
             if (selectedId != -1)
             {
                 AccountingEntity accountingEntity = new AccountingEntity();
@@ -46,7 +38,7 @@ namespace Accounting
 
         public static void Deleting(string selectedRecord)
         {
-            long selectedId = TakeIDFromAccTable("You should select record before deleting it.", selectedRecord);
+            long selectedId = TakeIDFromAccTable(selectedRecord);
             if (selectedId != -1)
             {
                 if (MessageBox.Show($"Are you sure, that you want to delete record with ID = {selectedId}?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)

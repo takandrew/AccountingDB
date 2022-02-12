@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -86,13 +87,27 @@ namespace Accounting
 
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
-            UpdateDelete.Updating(AccTable.SelectedItem.ToString());
+            try
+            {
+                UpdateDelete.Updating(AccTable.SelectedItem.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("You should select record before updating it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             AccTable_Update(true, true);
         }
 
         private void Button_Delete_Click(object sender, RoutedEventArgs e)
         {
-            UpdateDelete.Deleting(AccTable.SelectedItem.ToString());
+            try
+            {
+                UpdateDelete.Deleting(AccTable.SelectedItem.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("You should select record before deleting it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             AccTable_Update(true, true);
         }
 
