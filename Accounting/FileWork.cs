@@ -17,7 +17,7 @@ namespace Accounting
             dialog.IsFolderPicker = true;
             if (dialog.ShowDialog() == Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogResult.Ok)
             {
-                Properties.Settings settings = new Properties.Settings();
+                var settings = new Properties.Settings();
                 settings.copyToPath = dialog.FileName;
                 settings.Save();
             }
@@ -31,9 +31,9 @@ namespace Accounting
             if (MessageBox.Show($"Are you sure, that you want to backup the base?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 string path = @".\AccountingDB.db";
-                Properties.Settings settings = new Properties.Settings();
+                var settings = new Properties.Settings();
                 string newPath = settings.copyToPath + @"\AccountingDB.db";
-                System.IO.FileInfo fileInf = new System.IO.FileInfo(path);
+                var fileInf = new System.IO.FileInfo(path);
                 try
                 {
                     if (fileInf.Exists)
@@ -63,7 +63,7 @@ namespace Accounting
 
             try
             {
-                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(writePath, true, System.Text.Encoding.Default))
+                using (var sw = new System.IO.StreamWriter(writePath, true, System.Text.Encoding.Default))
                 {
                     sw.WriteLine(text);
                 }
@@ -81,16 +81,14 @@ namespace Accounting
         {
             var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             var file = System.IO.Path.Combine(directory, "BaseLog.txt");
-            System.IO.FileInfo fileInfo = new System.IO.FileInfo(file);
+            var fileInfo = new System.IO.FileInfo(file);
             try
             {
                 if (fileInfo.Exists)
                 {
                     var p = new System.Diagnostics.Process();
-                    p.StartInfo = new System.Diagnostics.ProcessStartInfo(file)
-                    {
-                        UseShellExecute = true
-                    };
+                    p.StartInfo = new System.Diagnostics.ProcessStartInfo(file);
+                    p.StartInfo.UseShellExecute = true;
                     p.Start();
                 }
                 else
@@ -109,9 +107,9 @@ namespace Accounting
         {
             if (MessageBox.Show($"Are you sure, that you want to backup the log?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) {
                 string path = @".\BaseLog.txt";
-                Properties.Settings settings = new Properties.Settings();
+                var settings = new Properties.Settings();
                 string newPath = settings.copyToPath + @"\BaseLog.txt";
-                System.IO.FileInfo fileInf = new System.IO.FileInfo(path);
+                var fileInf = new System.IO.FileInfo(path);
 
                 try
                 {
@@ -138,9 +136,9 @@ namespace Accounting
             if (MessageBox.Show($"Are you sure, that you want to apply the base backup?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 string path = @".\AccountingDB.db";
-                Properties.Settings settings = new Properties.Settings();
+                var settings = new Properties.Settings();
                 string newPath = settings.copyToPath + @"\AccountingDB.db";
-                System.IO.FileInfo fileInf = new System.IO.FileInfo(newPath);
+                var fileInf = new System.IO.FileInfo(newPath);
                 try
                 {
                     if (fileInf.Exists)
@@ -166,9 +164,9 @@ namespace Accounting
             if (MessageBox.Show($"Are you sure, that you want to apply the log backup?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 string path = @".\BaseLog.txt";
-                Properties.Settings settings = new Properties.Settings();
+                var settings = new Properties.Settings();
                 string newPath = settings.copyToPath + @"\BaseLog.txt";
-                System.IO.FileInfo fileInf = new System.IO.FileInfo(newPath);
+                var fileInf = new System.IO.FileInfo(newPath);
                 try
                 {
                     if (fileInf.Exists)

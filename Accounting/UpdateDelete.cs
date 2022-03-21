@@ -25,11 +25,11 @@ namespace Accounting
         public static void Updating(string selectedRecord)
         {
             long selectedId = TakeIDFromAccTable(selectedRecord);
-            AccountingEntity accountingEntity = new AccountingEntity();
-            AccountingDBContext dBContext = new AccountingDBContext();
+            var accountingEntity = new AccountingEntity();
+            var dBContext = new AccountingDBContext();
             accountingEntity = dBContext.AccountingEntities.Where(x => x.Id == selectedId).FirstOrDefault();
 
-            Updating updating = new Updating(accountingEntity);
+            var updating = new Updating(accountingEntity);
             updating.ShowDialog();
         }
 
@@ -38,8 +38,8 @@ namespace Accounting
             long selectedId = TakeIDFromAccTable(selectedRecord);
             if (MessageBox.Show($"Are you sure, that you want to delete record with ID = {selectedId}?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                AccountingEntity accountingEntity = new AccountingEntity();
-                AccountingDBContext dBContext = new AccountingDBContext();
+                var accountingEntity = new AccountingEntity();
+                var dBContext = new AccountingDBContext();
                 accountingEntity = dBContext.AccountingEntities.Where(x => x.Id == selectedId).FirstOrDefault();
                 string newLogRecord = $"{DateTime.Now} [DELETE] Record: ID = {accountingEntity.Id}, Name = {accountingEntity.Name}, Status = {accountingEntity.Status}, Progress = {accountingEntity.Progress}";
                 FileWork.SaveLog(newLogRecord);

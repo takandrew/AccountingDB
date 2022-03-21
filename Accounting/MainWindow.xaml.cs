@@ -29,7 +29,7 @@ namespace Accounting
 
         private void AccTable_Update(bool allType, bool allStatus)
         {
-            AccountingDBContext dbContext = new AccountingDBContext();
+            var dbContext = new AccountingDBContext();
             if (allType && allStatus)
             {
                 var query =
@@ -80,7 +80,7 @@ namespace Accounting
 
         private void Button_Insert_Click(object sender, RoutedEventArgs e)
         {
-            Inserting inserting = new Inserting();
+            var inserting = new Inserting();
             inserting.ShowDialog();
             AccTable_Update(true, true);
         }
@@ -91,7 +91,7 @@ namespace Accounting
             {
                 UpdateDelete.Updating(AccTable.SelectedItem.ToString());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("You should select record before updating it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -104,7 +104,7 @@ namespace Accounting
             {
                 UpdateDelete.Deleting(AccTable.SelectedItem.ToString());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("You should select record before deleting it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
