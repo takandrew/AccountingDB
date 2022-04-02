@@ -15,11 +15,18 @@ namespace Accounting
         {
             var dialog = new Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog();
             dialog.IsFolderPicker = true;
-            if (dialog.ShowDialog() == Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogResult.Ok)
+            if (Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.IsPlatformSupported)
             {
-                var settings = new Properties.Settings();
-                settings.copyToPath = dialog.FileName;
-                settings.Save();
+                if (dialog.ShowDialog() == Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogResult.Ok)
+                {
+                    var settings = new Properties.Settings();
+                    settings.copyToPath = dialog.FileName;
+                    settings.Save();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Your system doesn't support this feature", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

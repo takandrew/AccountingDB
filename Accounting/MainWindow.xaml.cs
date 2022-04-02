@@ -13,10 +13,13 @@ namespace Accounting
 
         public MainWindow()
         {
+            NameFilter = ""; 
+            AllType = true;
+            AllStatus = true;
             InitializeComponent();
         }
 
-        public void UpdateComboboxes()
+        public void ComboBox_Update()
         {
             ComboBox_Type.ItemsSource = Queries.Query_Type();
             ComboBox_Status.ItemsSource = Queries.Query_Status();
@@ -24,29 +27,26 @@ namespace Accounting
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            NameFilter = "";
-            AllType = true;
-            AllStatus = true;
-            AccTable_Update(AllType, AllStatus, NameFilter);
+            AccTable_Update();
         }
 
-        private void AccTable_Update(bool allType, bool allStatus, string nameFilter)
+        private void AccTable_Update()
         {
             var dbContext = new AccountingDBContext();
 
-            string selectedType = allType ? "" : ComboBox_Type.SelectedItem.ToString();
-            string selectedStatus = allStatus ? "" : ComboBox_Status.SelectedItem.ToString();
+            string selectedType = AllType ? "" : ComboBox_Type.SelectedItem.ToString();
+            string selectedStatus = AllStatus ? "" : ComboBox_Status.SelectedItem.ToString();
 
             var query =
                 from accEntity in dbContext.AccountingEntities
-                where accEntity.Type.Contains(selectedType) && accEntity.Status.Contains(selectedStatus) && accEntity.Name.Contains(nameFilter)
+                where accEntity.Type.Contains(selectedType) && accEntity.Status.Contains(selectedStatus) && accEntity.Name.Contains(NameFilter)
                 select new { accEntity.Id, accEntity.Name, accEntity.Type, accEntity.Status, accEntity.Progress };
             AccTable.ItemsSource = query.ToList();
             AccTable.Columns[0].Width = DataGridLength.Auto;
             AccTable.Columns[2].Width = DataGridLength.Auto;
             AccTable.Columns[3].Width = DataGridLength.Auto;
             AccTable.Columns[4].Width = DataGridLength.Auto;
-            UpdateComboboxes();
+            ComboBox_Update();
         }
 
         private void Filter()
@@ -56,14 +56,14 @@ namespace Accounting
                 AllType = true;
             if (ComboBox_Status.SelectedItem.ToString() == "All")
                 AllStatus = true;
-            AccTable_Update(AllType, AllStatus, NameFilter);
+            AccTable_Update();
         }
 
         private void Button_Insert_Click(object sender, RoutedEventArgs e)
         {
             var inserting = new Inserting();
             inserting.ShowDialog();
-            AccTable_Update(AllType, AllStatus, NameFilter);
+            AccTable_Update();
         }
 
         private void Button_Update_Click(object sender, RoutedEventArgs e)
@@ -74,9 +74,9 @@ namespace Accounting
             }
             catch (Exception)
             {
-                MessageBox.Show("You should select record before updating it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("You must select an entry before updating it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            AccTable_Update(AllType, AllStatus, NameFilter);
+            AccTable_Update();
         }
 
         private void Button_Delete_Click(object sender, RoutedEventArgs e)
@@ -87,9 +87,9 @@ namespace Accounting
             }
             catch (Exception)
             {
-                MessageBox.Show("You should select record before deleting it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("You must select an entry before deleting it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            AccTable_Update(AllType, AllStatus, NameFilter);
+            AccTable_Update();
         }
 
         private void Button_BackupBase_Click(object sender, RoutedEventArgs e)
@@ -115,7 +115,7 @@ namespace Accounting
         private void Button_ApplyTheBaseBackup_Click(object sender, RoutedEventArgs e)
         {
             FileWork.ApplyTheBaseBackup();
-            AccTable_Update(AllType, AllStatus, NameFilter);
+            AccTable_Update();
         }
 
         private void Button_ApplyTheLogBackup_Click(object sender, RoutedEventArgs e)
@@ -138,7 +138,7 @@ namespace Accounting
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             NameFilter = SearchTextBox.Text;
-            AccTable_Update(AllType, AllStatus, NameFilter);
+            AccTable_Update();
         }
     }
 }
