@@ -10,14 +10,13 @@
     <Grid Background="#FFECECEC">
         <DataGrid Name="AccTable" Margin="10,82,10,70" IsReadOnly="True"  ColumnWidth="*">
         </DataGrid>
-        <ComboBox Name="ComboBox_Type" HorizontalAlignment="Left" Margin="21,49,0,0" VerticalAlignment="Top" Width="176"/>
-        <Button Content="Filter" Name="Button_Filter" HorizontalAlignment="Left" Margin="633,39,0,0" VerticalAlignment="Top" Height="32" Width="135" Click="Button_Filter_Click"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="21,26,0,0" VerticalAlignment="Top" Width="176"/>
-        <ComboBox Name="ComboBox_Status"  HorizontalAlignment="Left" Margin="269,49,0,0" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Status" HorizontalAlignment="Left" Margin="269,26,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="ComboBox_Type" HorizontalAlignment="Left" Margin="38,49,0,0" VerticalAlignment="Top" Width="176" SelectedItem="All" SelectionChanged="ComboBox_Type_SelectionChanged"/>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="38,25,0,0" VerticalAlignment="Top" Width="176"/>
+        <ComboBox Name="ComboBox_Status"  HorizontalAlignment="Center" Margin="0,49,0,0" VerticalAlignment="Top" Width="176" SelectedItem="All" SelectionChanged="ComboBox_Status_SelectionChanged"/>
+        <Label Content="Status" HorizontalAlignment="Left" Margin="312,26,0,0" VerticalAlignment="Top"/>
         <Button Content="Insert" Name="Button_Insert" HorizontalAlignment="Left" Margin="92,376,0,0" VerticalAlignment="Top" Height="32" Width="135" Click="Button_Insert_Click"/>
-        <Button Content="Update" Name="Button_Update" HorizontalAlignment="Center" Margin="0,376,0,0" VerticalAlignment="Top" Height="32" Width="136" Click="Button_Update_Click"/>
-        <Button Content="Delete" Name="Button_Delete" HorizontalAlignment="Left" Margin="566,376,0,0" VerticalAlignment="Top" Height="32" Width="134" Click="Button_Delete_Click"/>
+        <Button Content="Update" Name="Button_Update" HorizontalAlignment="Center" Margin="0,376,0,0" VerticalAlignment="Top" Height="32" Width="135" Click="Button_Update_Click"/>
+        <Button Content="Delete" Name="Button_Delete" HorizontalAlignment="Left" Margin="566,376,0,0" VerticalAlignment="Top" Height="32" Width="135" Click="Button_Delete_Click"/>
         <Menu Height="20" VerticalAlignment="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Open the log" Click="Button_OpenTheLog_Click"></MenuItem>
@@ -30,5 +29,7 @@
                 <MenuItem Header="Apply the log backup" Click="Button_ApplyTheLogBackup_Click"></MenuItem>
             </MenuItem>
         </Menu>
+        <TextBox Name="SearchTextBox" HorizontalAlignment="Left" Margin="586,49,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="176" Height="22" TextChanged="SearchTextBox_TextChanged"/>
+        <Label Content="Search" HorizontalAlignment="Left" Margin="586,26,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
