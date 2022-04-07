@@ -39,7 +39,8 @@ namespace Accounting
 
             var query =
                 from accEntity in dbContext.AccountingEntities
-                where accEntity.Type.Contains(selectedType) && accEntity.Status.Contains(selectedStatus) && accEntity.Name.Contains(NameFilter)
+                where accEntity.Type.Contains(selectedType) && accEntity.Status.Contains(selectedStatus) 
+                                                            && (accEntity.Name.ToLower().Contains(NameFilter.ToLower()))
                 select new { accEntity.Id, accEntity.Name, accEntity.Type, accEntity.Status, accEntity.Progress };
             AccTable.ItemsSource = query.ToList();
             AccTable.Columns[0].Width = DataGridLength.Auto;
