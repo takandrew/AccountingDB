@@ -5,16 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Accounting"
         mc:Ignorable="d"
-        Title="Inserting" Height="359" Width="309" ResizeMode="NoResize" Icon="/16_122653.ico">
+        Title="Inserting" Height="359" Width="309" MinHeight="359" MinWidth="309" Icon="/16_122653.ico">
     <Grid Background="#FFECECEC">
-        <TextBox Name="TextBox_Name" HorizontalAlignment="Center" Margin="0,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Height="28"/>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="34,19,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="TextBox_Type" HorizontalAlignment="Center" Margin="0,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Height="28"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="34,78,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="TextBox_Status" HorizontalAlignment="Center" Margin="0,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Height="28"/>
-        <Label Content="Status" HorizontalAlignment="Left" Margin="34,137,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="TexBox_Progress" HorizontalAlignment="Center" Margin="0,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Height="28"/>
-        <Label Content="Progress" HorizontalAlignment="Left" Margin="34,196,0,0" VerticalAlignment="Top"/>
-        <Button Name="Button_InsertEntity" Content="Insert" HorizontalAlignment="Center" Margin="0,270,0,0" VerticalAlignment="Top" Height="32" Width="135" Click="Button_InsertEntity_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Name" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <TextBox Grid.Row="1" Name="TextBox_Name" HorizontalAlignment="Center" TextWrapping="Wrap" Width="241"/>
+
+        <Label Grid.Row="2" Content="Type" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <TextBox Grid.Row="3" Name="TextBox_Type" HorizontalAlignment="Center" TextWrapping="Wrap" Width="241"/>
+
+        <Label Grid.Row="4" Content="Status" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <TextBox Grid.Row="5" Name="TextBox_Status" HorizontalAlignment="Center" TextWrapping="Wrap" Width="241"/>
+
+        <Label Grid.Row="6" Content="Progress" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <TextBox Grid.Row="7" Name="TexBox_Progress" HorizontalAlignment="Center" TextWrapping="Wrap" Width="241"/>
+
+        <Grid Grid.Row="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"></RowDefinition>
+                <RowDefinition Height="0.4*"></RowDefinition>
+                <RowDefinition Height="0.3*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="1" Name="Button_InsertEntity" Content="Insert"
+                    HorizontalAlignment="Center" Width="135" Click="Button_InsertEntity_Click"/>
+        </Grid>
+        
     </Grid>
 </Window>

@@ -9,9 +9,9 @@
         Loaded="MainWindow_Loaded" Icon="/16_122653.ico">
     <Grid Background="#FFECECEC">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="0.35*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="0.25*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -55,7 +55,7 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <DataGrid Name="AccTable" IsReadOnly="True"  ColumnWidth="*"></DataGrid>
+            <DataGrid Name="AccTable" IsReadOnly="True" Margin="10,0" ColumnWidth="*"></DataGrid>
         </Grid>
 
         <Grid Grid.Row="2">
