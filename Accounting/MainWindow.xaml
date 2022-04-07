@@ -21,10 +21,10 @@
                 <ColumnDefinition Width="0.33*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.20*"></RowDefinition>
+                <RowDefinition Height="0.25*"></RowDefinition>
                 <RowDefinition Height="0.35*"></RowDefinition>
                 <RowDefinition Height="0.25*"></RowDefinition>
-                <RowDefinition Height="0.20*"></RowDefinition>
+                <RowDefinition Height="0.15*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Menu Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
