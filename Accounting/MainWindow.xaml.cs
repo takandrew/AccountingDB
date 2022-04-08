@@ -156,7 +156,7 @@ namespace Accounting
 
         private void GetBackup_OnClick(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show($"Are you sure, that you want to apply the base and the log backup?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Are you sure, that you want to apply the base and log backup?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 FileWork.ApplyTheBaseBackup();
                 FileWork.ApplyTheLogBackup();
@@ -166,12 +166,18 @@ namespace Accounting
 
         private void PostBackup_OnClick(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show($"Are you sure, that you want to backup the base and the log?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Are you sure, that you want to backup the base and log?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 FileWork.BackupTheBase();
                 FileWork.BackupTheLog();
                 AccTable_Update();
             }
+        }
+
+        private void About_OnClick(object sender, RoutedEventArgs e)
+        {
+            var about = new About();
+            about.ShowDialog();
         }
     }
 }

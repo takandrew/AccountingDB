@@ -44,6 +44,7 @@
                         <MenuItem Header="Backup only the log" Click="Button_BackupLog_Click"></MenuItem>
                     </MenuItem>
                 </MenuItem>
+                <MenuItem Header="About" Click="About_OnClick"></MenuItem>
             </Menu>
 
 
