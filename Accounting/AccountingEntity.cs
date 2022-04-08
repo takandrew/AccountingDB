@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Accounting
+﻿namespace Accounting
 {
     public partial class AccountingEntity
     {
