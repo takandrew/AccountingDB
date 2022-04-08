@@ -33,10 +33,16 @@
                 </MenuItem>
                 <MenuItem Header="Backup">
                     <MenuItem Header="Change backup directory" Click="Button_ChangeBackupDirectory_Click"></MenuItem>
-                    <MenuItem Header="Backup the base" Click="Button_BackupBase_Click" ></MenuItem>
-                    <MenuItem Header="Backup the log" Click="Button_BackupLog_Click"></MenuItem>
-                    <MenuItem Header="Apply the base backup" Click="Button_ApplyTheBaseBackup_Click"></MenuItem>
-                    <MenuItem Header="Apply the log backup" Click="Button_ApplyTheLogBackup_Click"></MenuItem>
+                    <MenuItem Header="Get backup">
+                        <MenuItem Header="Apply the base and the log backup" Click="GetBackup_OnClick"></MenuItem>
+                        <MenuItem Header="Apply only the base backup" Click="Button_ApplyTheBaseBackup_Click"></MenuItem>
+                        <MenuItem Header="Apply only the log backup" Click="Button_ApplyTheLogBackup_Click"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="Post backup">
+                        <MenuItem Header="Backup the base and the log" Click="PostBackup_OnClick"> </MenuItem>
+                        <MenuItem Header="Backup only the base" Click="Button_BackupBase_Click" ></MenuItem>
+                        <MenuItem Header="Backup only the log" Click="Button_BackupLog_Click"></MenuItem>
+                    </MenuItem>
                 </MenuItem>
             </Menu>
 

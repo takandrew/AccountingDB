@@ -95,12 +95,18 @@ namespace Accounting
 
         private void Button_BackupBase_Click(object sender, RoutedEventArgs e)
         {
-            FileWork.BackupTheBase();
+            if (MessageBox.Show($"Are you sure, that you want to backup the base?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                FileWork.BackupTheBase();
+            }
         }
 
         private void Button_BackupLog_Click(object sender, RoutedEventArgs e)
         {
-            FileWork.BackupTheLog();
+            if (MessageBox.Show($"Are you sure, that you want to backup the log?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                FileWork.BackupTheLog();
+            }
         }
 
         private void Button_ChangeBackupDirectory_Click(object sender, RoutedEventArgs e)
@@ -115,13 +121,19 @@ namespace Accounting
 
         private void Button_ApplyTheBaseBackup_Click(object sender, RoutedEventArgs e)
         {
-            FileWork.ApplyTheBaseBackup();
-            AccTable_Update();
+            if (MessageBox.Show($"Are you sure, that you want to apply the base backup?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                FileWork.ApplyTheBaseBackup();
+                AccTable_Update();
+            }
         }
 
         private void Button_ApplyTheLogBackup_Click(object sender, RoutedEventArgs e)
         {
-            FileWork.ApplyTheLogBackup();
+            if (MessageBox.Show($"Are you sure, that you want to apply the log backup?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                FileWork.ApplyTheLogBackup();
+            }
         }
 
         private void ComboBox_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -140,6 +152,26 @@ namespace Accounting
         {
             NameFilter = SearchTextBox.Text;
             AccTable_Update();
+        }
+
+        private void GetBackup_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show($"Are you sure, that you want to apply the base and the log backup?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                FileWork.ApplyTheBaseBackup();
+                FileWork.ApplyTheLogBackup();
+                AccTable_Update();
+            }
+        }
+
+        private void PostBackup_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show($"Are you sure, that you want to backup the base and the log?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                FileWork.BackupTheBase();
+                FileWork.BackupTheLog();
+                AccTable_Update();
+            }
         }
     }
 }

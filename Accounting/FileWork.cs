@@ -35,26 +35,23 @@ namespace Accounting
         /// </summary>
         public static void BackupTheBase()
         {
-            if (MessageBox.Show($"Are you sure, that you want to backup the base?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            string path = @".\AccountingDB.db";
+            var settings = new Properties.Settings();
+            string newPath = settings.copyToPath + @"\AccountingDB.db";
+            var fileInf = new System.IO.FileInfo(path);
+            try
             {
-                string path = @".\AccountingDB.db";
-                var settings = new Properties.Settings();
-                string newPath = settings.copyToPath + @"\AccountingDB.db";
-                var fileInf = new System.IO.FileInfo(path);
-                try
+                if (fileInf.Exists)
                 {
-                    if (fileInf.Exists)
-                    {
-                        fileInf.CopyTo(newPath, true);
-                        MessageBox.Show("The base has been successfully backed up.", "Backup", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                        MessageBox.Show("The base file wasn't found. \nCheck if the «AccountingDB.db» exist in the program directory ", "Backup", MessageBoxButton.OK, MessageBoxImage.Error);
+                    fileInf.CopyTo(newPath, true);
+                    MessageBox.Show("The base has been successfully backed up.", "Backup", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                else
+                    MessageBox.Show("The base file wasn't found. \nCheck if the «AccountingDB.db» exist in the program directory ", "Backup", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -112,26 +109,24 @@ namespace Accounting
         /// </summary>
         public static void BackupTheLog()
         {
-            if (MessageBox.Show($"Are you sure, that you want to backup the log?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) {
-                string path = @".\BaseLog.txt";
-                var settings = new Properties.Settings();
-                string newPath = settings.copyToPath + @"\BaseLog.txt";
-                var fileInf = new System.IO.FileInfo(path);
+            string path = @".\BaseLog.txt";
+            var settings = new Properties.Settings();
+            string newPath = settings.copyToPath + @"\BaseLog.txt";
+            var fileInf = new System.IO.FileInfo(path);
 
-                try
+            try
+            {
+                if (fileInf.Exists)
                 {
-                    if (fileInf.Exists)
-                    {
-                        fileInf.CopyTo(newPath, true);
-                        MessageBox.Show("The log has been successfully backed up.", "Backup", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                        MessageBox.Show("The log file wasn't found. \nCheck if the «BaseLog.txt» exist in the program directory.", "Backup", MessageBoxButton.OK, MessageBoxImage.Error);
+                    fileInf.CopyTo(newPath, true);
+                    MessageBox.Show("The log has been successfully backed up.", "Backup", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                else
+                    MessageBox.Show("The log file wasn't found. \nCheck if the «BaseLog.txt» exist in the program directory.", "Backup", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -140,26 +135,23 @@ namespace Accounting
         /// </summary>
         public static void ApplyTheBaseBackup()
         {
-            if (MessageBox.Show($"Are you sure, that you want to apply the base backup?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            string path = @".\AccountingDB.db";
+            var settings = new Properties.Settings();
+            string newPath = settings.copyToPath + @"\AccountingDB.db";
+            var fileInf = new System.IO.FileInfo(newPath);
+            try
             {
-                string path = @".\AccountingDB.db";
-                var settings = new Properties.Settings();
-                string newPath = settings.copyToPath + @"\AccountingDB.db";
-                var fileInf = new System.IO.FileInfo(newPath);
-                try
+                if (fileInf.Exists)
                 {
-                    if (fileInf.Exists)
-                    {
-                        fileInf.CopyTo(path, true);
-                        MessageBox.Show("The base backup has been successfully applied.", "Applying the backup", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                        MessageBox.Show("The base backup file wasn't found. \nCheck if the backup directory is correct", "Applying the backup", MessageBoxButton.OK, MessageBoxImage.Error);
+                    fileInf.CopyTo(path, true);
+                    MessageBox.Show("The base backup has been successfully applied.", "Applying the backup", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                else
+                    MessageBox.Show("The base backup file wasn't found. \nCheck if the backup directory is correct", "Applying the backup", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -168,26 +160,23 @@ namespace Accounting
         /// </summary>
         public static void ApplyTheLogBackup()
         {
-            if (MessageBox.Show($"Are you sure, that you want to apply the log backup?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            string path = @".\BaseLog.txt";
+            var settings = new Properties.Settings();
+            string newPath = settings.copyToPath + @"\BaseLog.txt";
+            var fileInf = new System.IO.FileInfo(newPath);
+            try
             {
-                string path = @".\BaseLog.txt";
-                var settings = new Properties.Settings();
-                string newPath = settings.copyToPath + @"\BaseLog.txt";
-                var fileInf = new System.IO.FileInfo(newPath);
-                try
+                if (fileInf.Exists)
                 {
-                    if (fileInf.Exists)
-                    {
-                        fileInf.CopyTo(path, true);
-                        MessageBox.Show("The log backup has been successfully applied.", "Applying the backup", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                        MessageBox.Show("The log backup file wasn't found. \nCheck if the backup directory is correct", "Applying the backup", MessageBoxButton.OK, MessageBoxImage.Error);
+                    fileInf.CopyTo(path, true);
+                    MessageBox.Show("The log backup has been successfully applied.", "Applying the backup", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                else
+                    MessageBox.Show("The log backup file wasn't found. \nCheck if the backup directory is correct", "Applying the backup", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
