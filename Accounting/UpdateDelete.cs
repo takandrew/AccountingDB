@@ -29,7 +29,7 @@ namespace Accounting
             var dBContext = new AccountingDBContext();
             accountingEntity = dBContext.AccountingEntities.Where(x => x.Id == selectedId).FirstOrDefault();
 
-            var updating = new Updating(accountingEntity);
+            var updating = new DoSmthWithEntity(accountingEntity, false);
             updating.ShowDialog();
         }
 

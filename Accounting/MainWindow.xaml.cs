@@ -62,7 +62,7 @@ namespace Accounting
 
         private void Button_Insert_Click(object sender, RoutedEventArgs e)
         {
-            var inserting = new Inserting();
+            var inserting = new DoSmthWithEntity(null, true);
             inserting.ShowDialog();
             AccTable_Update();
         }
