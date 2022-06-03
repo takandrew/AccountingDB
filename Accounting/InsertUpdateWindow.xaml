@@ -1,11 +1,11 @@
-﻿<Window x:Class="Accounting.DoSmthWithEntity"
+﻿<Window x:Class="Accounting.InsertUpdateWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Accounting"
         mc:Ignorable="d"
-        Title="DoSmthWithEntity" Height="359" Width="309" MinHeight="359" MinWidth="309" Icon="/16_122653.ico">
+        Title="InsertUpdateWindow" Height="359" Width="309" MinHeight="359" MinWidth="309" Icon="/16_122653.ico">
     <Grid Background="#FFECECEC">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"></RowDefinition>
@@ -39,7 +39,7 @@
             </Grid.RowDefinitions>
 
             <Button Grid.Row="1" Name="Button_DoSmthWithEntity" Content="Update"
-                    HorizontalAlignment="Center" Width="135" Click="Button_DoSmthWithEntity_Click"/>
+                    HorizontalAlignment="Center" Width="135"/>
         </Grid>
 
     </Grid>

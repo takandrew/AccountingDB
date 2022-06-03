@@ -19,14 +19,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3">
+    <PackageReference Include="Autofac" Version="6.4.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.WindowsAPICodePack-Core" Version="1.1.0.2" />
     <PackageReference Include="Microsoft.WindowsAPICodePack-Shell" Version="1.1.0" />
+    <PackageReference Include="ReactiveUI" Version="18.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="WPF_MVVM_Classes">
+      <HintPath>Service\WPF_MVVM_Classes.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
