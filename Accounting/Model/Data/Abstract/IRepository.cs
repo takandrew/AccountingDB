@@ -9,6 +9,7 @@ namespace Accounting.Model.Data.Abstract
     public interface IRepository<T>
     {
         IEnumerable<T> GetAll();
+        IEnumerable<T> GetFiltered(string selectedStatus, string selectedType, string selectedName);
         T GetByID(int id);
         void Save(T obj);
         void Delete(int id);

@@ -1,4 +1,4 @@
-﻿<Window x:Class="Accounting.About"
+﻿<Window x:Class="Accounting.AboutWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,15 +13,15 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" x:Name="AboutProgram" IsReadOnly="True"
+        <TextBox Grid.Row="0" Text="{Binding AboutProgram}" IsReadOnly="True"
                  BorderThickness="0" Margin="10" TextWrapping="Wrap"
                  VerticalAlignment="Center"></TextBox>
 
-        <TextBox Grid.Row="1" x:Name="AboutAuthor" IsReadOnly="True" 
+        <TextBox Grid.Row="1" Text="{Binding AboutAuthor}" IsReadOnly="True" 
                  BorderThickness="0" Margin="20, 10" TextWrapping="Wrap"
                  VerticalAlignment="Center"></TextBox>
 
-        <TextBox Grid.Row="2" x:Name="AboutGithub" IsReadOnly="True" 
+        <TextBox Grid.Row="2" Text="{Binding AboutGithub}" IsReadOnly="True" 
                  BorderThickness="0" Margin="20, 10" TextWrapping="Wrap"
                  VerticalAlignment="Center"></TextBox>
     </Grid>

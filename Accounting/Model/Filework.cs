@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Accounting
+namespace Accounting.Model
 {
     /// <summary>
     /// Class for working with files
@@ -44,10 +44,10 @@ namespace Accounting
                 if (fileInf.Exists)
                 {
                     fileInf.CopyTo(newPath, true);
-                    MessageBox.Show("The base has been successfully backed up.", "Backup", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("The database has been successfully backed up.", "Backup", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
-                    MessageBox.Show("The base file wasn't found. \nCheck if the «AccountingDB.db» exist in the program directory ", "Backup", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("The database file wasn't found. \nCheck if the «AccountingDB.db» exist in the program directory ", "Backup", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
@@ -144,10 +144,10 @@ namespace Accounting
                 if (fileInf.Exists)
                 {
                     fileInf.CopyTo(path, true);
-                    MessageBox.Show("The base backup has been successfully applied.", "Applying the backup", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("The database backup has been successfully applied.", "Applying the backup", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
-                    MessageBox.Show("The base backup file wasn't found. \nCheck if the backup directory is correct", "Applying the backup", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("The database backup file wasn't found. \nCheck if the backup directory is correct", "Applying the backup", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {

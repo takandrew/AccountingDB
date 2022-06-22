@@ -29,22 +29,22 @@
 
             <Menu Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
                 <MenuItem Header="File">
-                    <MenuItem Header="Open the log"></MenuItem>
+                    <MenuItem Header="Open the log" Command="{Binding OpenTheLogCommand}"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Backup">
-                    <MenuItem Header="Change backup directory"></MenuItem>
+                    <MenuItem Header="Change backup directory" Command="{Binding ChangeBackupDirectoryCommand}"></MenuItem>
                     <MenuItem Header="Get backup">
-                        <MenuItem Header="Apply the base and log backup"></MenuItem>
-                        <MenuItem Header="Apply only the base backup"></MenuItem>
-                        <MenuItem Header="Apply only the log backup"></MenuItem>
+                        <MenuItem Header="Get the database and log backup" Command="{Binding GetDBLogBackup}"></MenuItem>
+                        <MenuItem Header="Get only the database backup" Command="{Binding GetDBBackup}"></MenuItem>
+                        <MenuItem Header="Get only the log backup" Command="{Binding GetLogBackup}"></MenuItem>
                     </MenuItem>
                     <MenuItem Header="Post backup">
-                        <MenuItem Header="Backup the base and log"> </MenuItem>
-                        <MenuItem Header="Backup only the base"></MenuItem>
-                        <MenuItem Header="Backup only the log"></MenuItem>
+                        <MenuItem Header="Post the database and log backup" Command="{Binding PostDBLogBackup}"></MenuItem>
+                        <MenuItem Header="Post only the database backup" Command="{Binding PostDBBackup}"></MenuItem>
+                        <MenuItem Header="Post only the log backup" Command="{Binding PostLogBackup}"></MenuItem>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="About"></MenuItem>
+                <MenuItem Header="About" Command="{Binding AboutCommand}"></MenuItem>
             </Menu>
 
 
@@ -58,11 +58,12 @@
 
             <Label Grid.Column="2" Grid.Row="1" Content="Search" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
             <TextBox Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"
-                     TextWrapping="Wrap" Text="" Width="176"/>
+                     TextWrapping="Wrap" Width="176" Text="{Binding SelectedName, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
 
         <Grid Grid.Row="1">
-            <DataGrid IsReadOnly="True" Margin="10,0" ItemsSource="{Binding AllAccountingEntities}" ColumnWidth="*"></DataGrid>
+            <DataGrid IsReadOnly="True" Margin="10,0" ItemsSource="{Binding AllAccountingEntities}" ColumnWidth="*"
+                      SelectedItem="{Binding SelectedEntity}"/>
         </Grid>
 
         <Grid Grid.Row="2">
@@ -78,13 +79,16 @@
             </Grid.RowDefinitions>
 
             <Button Grid.Column="0" Grid.Row="1" Content="Insert"
-                    HorizontalAlignment="Center" Width="135"/>
+                    HorizontalAlignment="Center" Width="135"
+                    Command="{Binding InsertCommand}"/>
 
             <Button Grid.Column="1" Grid.Row="1" Content="Update"
-                    HorizontalAlignment="Center" Width="135"/>
+                    HorizontalAlignment="Center" Width="135"
+                    Command="{Binding UpdateCommand}"/>
 
             <Button Grid.Column="2" Grid.Row="1" Content="Delete" 
-                    HorizontalAlignment="Center" Width="135"/>
+                    HorizontalAlignment="Center" Width="135"
+                    Command="{Binding DeleteCommand}"/>
         </Grid>
 
     </Grid>

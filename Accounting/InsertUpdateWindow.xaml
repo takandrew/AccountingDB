@@ -20,16 +20,16 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Name" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-        <TextBox Grid.Row="1" Name="TextBox_Name" HorizontalAlignment="Center" TextWrapping="Wrap" Width="241"/>
+        <TextBox Grid.Row="1" Text="{Binding EntityName}" HorizontalAlignment="Center" TextWrapping="Wrap" Width="241"/>
 
         <Label Grid.Row="2" Content="Type" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-        <TextBox Grid.Row="3" Name="TextBox_Type" HorizontalAlignment="Center" TextWrapping="Wrap" Width="241"/>
+        <TextBox Grid.Row="3" Text="{Binding EntityType}" HorizontalAlignment="Center" TextWrapping="Wrap" Width="241"/>
 
         <Label Grid.Row="4" Content="Status" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-        <TextBox Grid.Row="5" Name="TextBox_Status" HorizontalAlignment="Center" TextWrapping="Wrap" Width="241"/>
+        <TextBox Grid.Row="5" Text="{Binding EntityStatus}" HorizontalAlignment="Center" TextWrapping="Wrap" Width="241"/>
 
         <Label Grid.Row="6" Content="Progress" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-        <TextBox Grid.Row="7" Name="TexBox_Progress" HorizontalAlignment="Center" TextWrapping="Wrap" Width="241"/>
+        <TextBox Grid.Row="7" Text="{Binding EntityProgress}" HorizontalAlignment="Center" TextWrapping="Wrap" Width="241"/>
 
         <Grid Grid.Row="8">
             <Grid.RowDefinitions>
@@ -38,7 +38,7 @@
                 <RowDefinition Height="0.3*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="1" Name="Button_DoSmthWithEntity" Content="Update"
+            <Button Grid.Row="1" Command="{Binding InsertUpdateButtonCommand}" Content="Done"
                     HorizontalAlignment="Center" Width="135"/>
         </Grid>
 

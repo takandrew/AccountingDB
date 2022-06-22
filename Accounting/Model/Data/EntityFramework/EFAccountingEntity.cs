@@ -21,6 +21,17 @@ namespace Accounting.Model.Data.EntityFramework
             return _context.AccountingEntities.ToList();
         }
 
+        public IEnumerable<AccountingEntity> GetFiltered(string selectedStatus, string selectedType, string selectedName)
+        {
+            if (selectedStatus == "All")
+                selectedStatus = "";
+            if (selectedType == "All")
+                selectedType = "";
+            return _context.AccountingEntities.Where(x => x.Status.Contains(selectedStatus)
+                                                          && x.Type.Contains(selectedType)
+                                                          && x.Name.ToLower().Contains(selectedName.ToLower())).ToList();
+        }
+
         public AccountingEntity GetByID(int id)
         {
             return _context.AccountingEntities.First(x => x.Id == id);
