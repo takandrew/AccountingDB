@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Accounting"
         mc:Ignorable="d"
-        Title="Accounting" Height="462" Width="800" MinHeight="462" MinWidth="800"
+        Title="Accounting" Height="500" Width="800" MinHeight="500" MinWidth="800"
         Icon="/16_122653.ico">
     <Grid Background="#FFECECEC">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -30,6 +29,9 @@
             <Menu Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
                 <MenuItem Header="File">
                     <MenuItem Header="Open the log" Command="{Binding OpenTheLogCommand}"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Edit">
+                    <MenuItem Header="Edit type list"/>
                 </MenuItem>
                 <MenuItem Header="Backup">
                     <MenuItem Header="Change backup directory" Command="{Binding ChangeBackupDirectoryCommand}"></MenuItem>
@@ -62,33 +64,26 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <DataGrid IsReadOnly="True" Margin="10,0" ItemsSource="{Binding AllAccountingEntities}" ColumnWidth="*"
-                      SelectedItem="{Binding SelectedEntity}"/>
-        </Grid>
+            <Grid.Resources>
+                <DataTemplate x:Key="GridButtonMinus">
+                    <Button Content="-"></Button>
+                </DataTemplate>
+                <DataTemplate x:Key="GridButtonPlus">
+                    <Button Content="+"></Button>
+                </DataTemplate>
+            </Grid.Resources>
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.33*"></ColumnDefinition>
-                <ColumnDefinition Width="0.33*"></ColumnDefinition>
-                <ColumnDefinition Width="0.33*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.3*"></RowDefinition>
-                <RowDefinition Height="0.4*"></RowDefinition>
-                <RowDefinition Height="0.3*"></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <Button Grid.Column="0" Grid.Row="1" Content="Insert"
-                    HorizontalAlignment="Center" Width="135"
-                    Command="{Binding InsertCommand}"/>
-
-            <Button Grid.Column="1" Grid.Row="1" Content="Update"
-                    HorizontalAlignment="Center" Width="135"
-                    Command="{Binding UpdateCommand}"/>
-
-            <Button Grid.Column="2" Grid.Row="1" Content="Delete" 
-                    HorizontalAlignment="Center" Width="135"
-                    Command="{Binding DeleteCommand}"/>
+            <DataGrid IsReadOnly="True" Margin="10,0, 10, 10" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Type" Width="auto"/>
+                    <DataGridTextColumn Header="Name" Width="*"/>
+                    <DataGridTextColumn Header="Status" Width="auto"/>
+                    <DataGridTemplateColumn CellTemplate="{StaticResource GridButtonMinus}" Width="auto"/>
+                    <DataGridTextColumn Header="Progress" Width="auto"/>
+                    <DataGridTemplateColumn CellTemplate="{StaticResource GridButtonPlus}" Width="auto"/>
+                    <DataGridTextColumn Header="Season/Part" Width="auto"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
 
     </Grid>

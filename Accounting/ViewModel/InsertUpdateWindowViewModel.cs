@@ -89,13 +89,14 @@ public class InsertUpdateWindowViewModel : ViewModelBase
         _accountingEntity = accountingEntity;
         if (accountingEntity != null)
         {
-            EntityName = accountingEntity.Name;
-            EntityType = accountingEntity.Type;
-            EntityStatus = accountingEntity.Status;
-            EntityProgress = accountingEntity.Progress;
+            //TODO: New logic of inserting/updating
+            //EntityName = accountingEntity.Name;
+            //EntityType = accountingEntity.Type;
+            //EntityStatus = accountingEntity.Status;
+            //EntityProgress = accountingEntity.Progress;
 
-            string newLogRecord = $"{DateTime.Now} [UPDATE] [SELECTED] Record: ID = {accountingEntity.Id}, Type = {EntityType}, Name = {EntityName}, Status = {EntityStatus}, Progress = {EntityProgress}";
-            FileWork.SaveLog(newLogRecord);
+            //string newLogRecord = $"{DateTime.Now} [UPDATE] [SELECTED] Record: ID = {accountingEntity.Id}, Type = {EntityType}, Name = {EntityName}, Status = {EntityStatus}, Progress = {EntityProgress}";
+            //FileWork.SaveLog(newLogRecord);
         }
     }
 
@@ -107,29 +108,31 @@ public class InsertUpdateWindowViewModel : ViewModelBase
         {
             if (_accountingEntity != null)
             {
-                AccountingEntity.Name = EntityName;
-                AccountingEntity.Type = EntityType;
-                AccountingEntity.Status = EntityStatus;
-                AccountingEntity.Progress = EntityProgress;
-                _accountingRepository.Save(_accountingEntity);
-                MessageBox.Show("A record has been successfully updated.", "Updating", MessageBoxButton.OK, MessageBoxImage.Information);
-                _viewModelBase.UpdateTable();
-                string newLogRecord = $"{DateTime.Now} [UPDATE] [UPDATED] Record: ID = {AccountingEntity.Id}, Type = {AccountingEntity.Type}, Name = {AccountingEntity.Name}, Status = {AccountingEntity.Status}, Progress = {AccountingEntity.Progress}";
-                FileWork.SaveLog(newLogRecord);
+                //TODO: New logic of updating
+                //AccountingEntity.Name = EntityName;
+                //AccountingEntity.Type = EntityType;
+                //AccountingEntity.Status = EntityStatus;
+                //AccountingEntity.Progress = EntityProgress;
+                //_accountingRepository.Save(_accountingEntity);
+                //MessageBox.Show("A record has been successfully updated.", "Updating", MessageBoxButton.OK, MessageBoxImage.Information);
+                //_viewModelBase.UpdateTable();
+                //string newLogRecord = $"{DateTime.Now} [UPDATE] [UPDATED] Record: ID = {AccountingEntity.Id}, Type = {AccountingEntity.Type}, Name = {AccountingEntity.Name}, Status = {AccountingEntity.Status}, Progress = {AccountingEntity.Progress}";
+                //FileWork.SaveLog(newLogRecord);
 
             }
             else
             {
-                AccountingEntity = new AccountingEntity();
-                AccountingEntity.Name = EntityName;
-                AccountingEntity.Type = EntityType;
-                AccountingEntity.Status = EntityStatus;
-                AccountingEntity.Progress = EntityProgress;
-                _accountingRepository.Save(_accountingEntity);
-                MessageBox.Show("A record has been successfully inserted.", "Inserting", MessageBoxButton.OK, MessageBoxImage.Information);
-                _viewModelBase.UpdateTable();
-                string newLogRecord = $"{DateTime.Now} [INSERT] Record: ID = {AccountingEntity.Id}, Type = {AccountingEntity.Type}, Name = {AccountingEntity.Name}, Status = {AccountingEntity.Status}, Progress = {AccountingEntity.Progress}";
-                FileWork.SaveLog(newLogRecord);
+                //TODO: New logic of inserting
+                //AccountingEntity = new AccountingEntity();
+                //AccountingEntity.Name = EntityName;
+                //AccountingEntity.Type = EntityType;
+                //AccountingEntity.Status = EntityStatus;
+                //AccountingEntity.Progress = EntityProgress;
+                //_accountingRepository.Save(_accountingEntity);
+                //MessageBox.Show("A record has been successfully inserted.", "Inserting", MessageBoxButton.OK, MessageBoxImage.Information);
+                //_viewModelBase.UpdateTable();
+                //string newLogRecord = $"{DateTime.Now} [INSERT] Record: ID = {AccountingEntity.Id}, Type = {AccountingEntity.Type}, Name = {AccountingEntity.Name}, Status = {AccountingEntity.Status}, Progress = {AccountingEntity.Progress}";
+                //FileWork.SaveLog(newLogRecord);
             }
 
         });

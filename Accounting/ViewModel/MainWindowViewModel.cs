@@ -20,8 +20,8 @@ namespace Accounting.ViewModel
         private AccountingEntity _accountingEntity;
         private IEnumerable<string> _allStatus;
         private IEnumerable<string> _allType;
-        private string _selectedStatus = String.Empty;
-        private string _selectedType = String.Empty;
+        private int _selectedStatus;
+        private int _selectedType;
         private string _selectedName = String.Empty;
         private AccountingEntity _selectedEntity;
         private bool _isFirstLaunch = true;
@@ -66,18 +66,18 @@ namespace Accounting.ViewModel
                 OnPropertyChanged();
             }
         }
-        public string SelectedStatus
+        public int SelectedStatus
         {
             get => _selectedStatus;
             set
             {
                 _selectedStatus = value;
                 OnPropertyChanged();
-                if (!_isFirstLaunch) 
+                if (!_isFirstLaunch)
                     FilterTable();
             }
         }
-        public string SelectedType
+        public int SelectedType
         {
             get => _selectedType;
             set
@@ -129,9 +129,9 @@ namespace Accounting.ViewModel
         {
             AllAccountingEntities = _entityRepository.GetAll();
 
-            UpdateComboBoxes(out var statusList, out var typeList);
-            AllStatus = statusList;
-            AllType = typeList;
+            //UpdateComboBoxes(out var statusList, out var typeList);
+            //AllStatus = statusList;
+            //AllType = typeList;
 
             _isFirstLaunch = false;
         }
@@ -141,20 +141,21 @@ namespace Accounting.ViewModel
             AllAccountingEntities = _entityRepository.GetFiltered(SelectedStatus, SelectedType, SelectedName);
         }
 
-        private void UpdateComboBoxes(out List<string> statusList, out List<string> typeList)
+        private void UpdateComboBoxes(/*out List<string> statusList, out List<string> typeList*/)
         {
-            statusList = new List<string>();
-            typeList = new List<string>();
-            statusList.Clear(); typeList.Clear();
-            statusList.Add("All"); typeList.Add("All");
-            SelectedStatus = statusList[0]; SelectedType = typeList[0];
-            foreach (var item in AllAccountingEntities)
-            {
-                if (!Contains(statusList, item.Status, StringComparison.OrdinalIgnoreCase))
-                    statusList.Add(item.Status);
-                if (!Contains(typeList, item.Type, StringComparison.OrdinalIgnoreCase))
-                    typeList.Add(item.Type);
-            }
+            //TODO: New logic of status/types lists
+            //statusList = new List<string>();
+            //typeList = new List<string>();
+            //statusList.Clear(); typeList.Clear();
+            //statusList.Add("All"); typeList.Add("All");
+            //SelectedStatus = statusList[0]; SelectedType = typeList[0];
+            //foreach (var item in AllAccountingEntities)
+            //{
+            //    if (!Contains(statusList, item.Status, StringComparison.OrdinalIgnoreCase))
+            //        statusList.Add(item.Status);
+            //    if (!Contains(typeList, item.Type, StringComparison.OrdinalIgnoreCase))
+            //        typeList.Add(item.Type);
+            //}
         }
 
         #endregion
@@ -216,9 +217,10 @@ namespace Accounting.ViewModel
                     if (MessageBox.Show($"Are you sure, that you want to delete record with ID = {SelectedEntity.Id}?",
                             "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {
-                        _entityRepository.Delete(SelectedEntity.Id);
-                        string newLogRecord = $"{DateTime.Now} [DELETE] Record: ID = {SelectedEntity.Id}, Type = {SelectedEntity.Type}, Name = {SelectedEntity.Name}, Status = {SelectedEntity.Status}, Progress = {SelectedEntity.Progress}";
-                        FileWork.SaveLog(newLogRecord);
+                        //TODO: New logic of deleting
+                        //_entityRepository.Delete(SelectedEntity.Id);
+                        //string newLogRecord = $"{DateTime.Now} [DELETE] Record: ID = {SelectedEntity.Id}, Type = {SelectedEntity.Type}, Name = {SelectedEntity.Name}, Status = {SelectedEntity.Status}, Progress = {SelectedEntity.Progress}";
+                        //FileWork.SaveLog(newLogRecord);
                     }
                 }
                 else

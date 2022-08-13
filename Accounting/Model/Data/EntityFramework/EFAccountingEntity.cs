@@ -21,14 +21,15 @@ namespace Accounting.Model.Data.EntityFramework
             return _context.AccountingEntities.ToList();
         }
 
-        public IEnumerable<AccountingEntity> GetFiltered(string selectedStatus, string selectedType, string selectedName)
+        public IEnumerable<AccountingEntity> GetFiltered(int selectedStatus, int selectedType, string selectedName)
         {
-            if (selectedStatus == "All")
-                selectedStatus = "";
-            if (selectedType == "All")
-                selectedType = "";
-            return _context.AccountingEntities.Where(x => x.Status.Contains(selectedStatus)
-                                                          && x.Type.Contains(selectedType)
+            // TODO: I need to come up with logic of this status/list thing
+            //if (selectedStatus == "All")
+            //    selectedStatus = "";
+            //if (selectedType == "All")
+            //    selectedType = "";
+            return _context.AccountingEntities.Where(x => x.StatusId == selectedStatus
+                                                          && x.TypeId == selectedType
                                                           && x.Name.ToLower().Contains(selectedName.ToLower())).ToList();
         }
 
@@ -47,9 +48,15 @@ namespace Accounting.Model.Data.EntityFramework
                 if (dbEntry != null)
                 {
                     dbEntry.Name = obj.Name;
-                    dbEntry.Progress = obj.Progress;
-                    dbEntry.Status = obj.Status;
-                    dbEntry.Type = obj.Type;
+                    dbEntry.TypeId = obj.TypeId;
+                    dbEntry.StatusId = obj.StatusId;
+                    dbEntry.ProgressCur = obj.ProgressCur;
+                    dbEntry.ProgressSum = obj.ProgressSum;
+                    dbEntry.ReleaseYear = obj.ReleaseYear;
+                    dbEntry.Season = obj.Season;
+                    dbEntry.NumberOfRe = obj.NumberOfRe;
+                    dbEntry.DateAdded = obj.DateAdded;
+                    dbEntry.DateChanged = obj.DateChanged;
                 }
             }
             _context.SaveChanges();
